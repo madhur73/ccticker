@@ -1,4 +1,6 @@
-class Binnance():
+import requests
+
+class Binance():
 
 	def __init__(self, endpoint):
 		self.url = endpoint
