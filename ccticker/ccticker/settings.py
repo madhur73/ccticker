@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ccapp.apps.CcappConfig',
     'django_celery_beat',
+    'channels',
+
 ]
+ASGI_APPLICATION = "ccticker.routing.application"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
