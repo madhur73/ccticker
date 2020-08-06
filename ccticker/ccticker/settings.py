@@ -137,3 +137,13 @@ CACHES = {
 
 CELERY_BROKER_URL = 'redis://localhost:6379/1'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [('localhost', 6379)],
+        },
+    },
+}

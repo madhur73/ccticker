@@ -9,9 +9,9 @@ class TickerView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['ticker_codes'] = [
             'ETHBIN',
-            'ETHKAR',
+            'ETHKRA',
             'BTCBIN',
-            'BTCKAR',
+            'BTCKRA',
         ]
         return context
 # Create your views here.
