@@ -3,6 +3,7 @@ from .prices import Prices
 from django.core.cache import cache
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from ccticker.celery import app
 '''
 @shared_task
 def example_task():
@@ -32,13 +33,8 @@ def update_cc_prices():
 						'price': latest_price,
 					}
 				)
-			# cache.set(ticker_code, response[cryptocoin][source])
-
-			#print(cache.get(ticker_code,response[cryptocoin][source]))
-			# update cache
-			# 12 => 12 ,, 20 
-			# memory size > THRESHHOL:-> PERSIST
-			# FIFO -
-			# SQL  -
-
-
+@app.task(name='celery.ping')
+def ping():
+    # type: () -> str
+    """Simple task that just returns 'pong'."""
+    return 'pong'

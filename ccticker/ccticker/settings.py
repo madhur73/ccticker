@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ccapp.apps.CcappConfig',
     'django_celery_beat',
+    'celery.contrib.testing',
     
 
 ]

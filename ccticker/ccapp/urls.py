@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import TickerView
+from .views import TickerView, HomeView
 from .consumers import TickerConsumer
 
 urlpatterns = [
     path('', TickerView.as_view()),
+    
+
 ]
 
 websocket_urlpatterns = [

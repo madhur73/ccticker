@@ -15,3 +15,6 @@ class TickerView(TemplateView):
         ]
         return context
 # Create your views here.
+class HomeView(TemplateView):
+
+    template_name = 'ccapp/index.html'
