@@ -18,3 +18,5 @@ class TickerView(TemplateView):
 class HomeView(TemplateView):
 
     template_name = 'ccapp/index.html'
+
+    
