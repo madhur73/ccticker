@@ -11,7 +11,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
+DEBUG = env('DEBUG')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*#ot6ux2#v%zm$kc!z9nwxb&&hj0oxgxystd5+z#z1!*+$$b7-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -129,22 +135,23 @@ STATIC_URL = '/static/'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
+        'LOCATION':os.environ['REDIS_URL'],
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            "MAX_ENTRIES": 1000
         }
     },
 }
 
-CELERY_BROKER_URL = 'redis://localhost:6379/1'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+CELERY_BROKER_URL = env('REDIS_URL')
+CELERY_RESULT_BACKEND = env('REDIS_URL')
 
 
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [('localhost', 6379)],
+            "hosts": [env('REDIS_URL')],
         },
     },
 }

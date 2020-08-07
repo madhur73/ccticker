@@ -1,6 +1,7 @@
 # set the default Django settings module for the 'celery' program.
 import os
 from celery import Celery
+import environ
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccticker.settings')
 
